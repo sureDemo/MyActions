@@ -29,7 +29,7 @@
 #5g超级盲盒
 0 */4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
 #京喜牧场
-20 0-23/3 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
+20 0-23/3 * * * node /scripts/zx_jxmc.js >> /scripts/logs/zx_jxmc.log 2>&1
 #东东电竞经理
 47 10 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
 #食力街跑酷达人
@@ -140,7 +140,7 @@
 # 京东抽奖机
 22 0,12,18 * * *  node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
 # 宠汪汪
-15 */2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
+15 */2 * * * node /scripts/zx_joy.js >> /scripts/logs/zx_joy.log 2>&1
 # 宠汪汪偷狗粮
 10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
 # 宠汪汪兑换
