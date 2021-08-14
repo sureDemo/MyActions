@@ -58,12 +58,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.USER_AGENT = exports.format = exports.axios = void 0;
+exports.USER_AGENT = exports.Md5 = exports.format = exports.axios = void 0;
 var date_fns_1 = require("date-fns");
 Object.defineProperty(exports, "format", { enumerable: true, get: function () { return date_fns_1.format; } });
 var axios_1 = __importDefault(require("axios"));
 exports.axios = axios_1.default;
 var ts_md5_1 = require("ts-md5");
+Object.defineProperty(exports, "Md5", { enumerable: true, get: function () { return ts_md5_1.Md5; } });
 var zx_USER_AGENTS_1 = __importDefault(require("./zx_USER_AGENTS"));
 exports.USER_AGENT = zx_USER_AGENTS_1.default;
 var dotenv = __importStar(require("dotenv"));
@@ -197,6 +198,11 @@ var ZxObject = /** @class */ (function () {
                             return [2 /*return*/, ''];
                         return [2 /*return*/];
                 }
+            });
+        }); };
+        this.getRandomNumberByRange = function (start, end) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, Math.floor(Math.random() * (end - start) + start)];
             });
         }); };
         this.getFarmShareCode = function (cookie) { return __awaiter(_this, void 0, void 0, function () {
