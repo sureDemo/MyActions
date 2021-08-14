@@ -66,7 +66,7 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                 return [4 /*yield*/, zx_ts_common_1.default.dowork(function () {
                         var _a, _b;
                         return __awaiter(this, void 0, void 0, function () {
-                            var lastgettime, food, petid, coins, e_1, _i, _c, day, taskRetCode, e_2, e_3;
+                            var food, petid, coins, e_1, lastgettime, _i, _c, day, taskRetCode, e_2, e_3;
                             return __generator(this, function (_d) {
                                 switch (_d.label) {
                                     case 0:
@@ -78,12 +78,6 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                         return [4 /*yield*/, api('queryservice/GetHomePageInfo', 'channel,isgift,sceneid', { isgift: 0 })];
                                     case 1:
                                         homePageInfo = _d.sent();
-                                        if ((_b = (_a = homePageInfo.data) === null || _a === void 0 ? void 0 : _a.cow) === null || _b === void 0 ? void 0 : _b.lastgettime) {
-                                            lastgettime = homePageInfo.data.cow.lastgettime;
-                                        }
-                                        else {
-                                            return [2 /*return*/];
-                                        }
                                         food = 0;
                                         try {
                                             food = homePageInfo.data.materialinfo[0].value;
@@ -110,25 +104,26 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                     case 5:
                                         console.log('现有草:', food);
                                         console.log('金币:', coins);
+                                        if (!((_b = (_a = homePageInfo.data) === null || _a === void 0 ? void 0 : _a.cow) === null || _b === void 0 ? void 0 : _b.lastgettime)) return [3 /*break*/, 7];
                                         return [4 /*yield*/, api('operservice/GetCoin', 'activeid,channel,sceneid,token', { token: A(lastgettime), activeid: 'jxmc_active_0001' })];
                                     case 6:
-                                        // 收牛牛
                                         res = _d.sent();
                                         if (res.ret === 0)
                                             console.log('收牛牛：', res.data.addcoin);
-                                        return [4 /*yield*/, api('queryservice/GetSignInfo', 'activeid,channel,sceneid')];
-                                    case 7:
+                                        _d.label = 7;
+                                    case 7: return [4 /*yield*/, api('queryservice/GetSignInfo', 'activeid,channel,sceneid')];
+                                    case 8:
                                         // 签到
                                         res = _d.sent();
-                                        if (!res.data.signlist) return [3 /*break*/, 12];
+                                        if (!res.data.signlist) return [3 /*break*/, 13];
                                         _i = 0, _c = res.data.signlist;
-                                        _d.label = 8;
-                                    case 8:
-                                        if (!(_i < _c.length)) return [3 /*break*/, 11];
-                                        day = _c[_i];
-                                        if (!(day.fortoday && !day.hasdone)) return [3 /*break*/, 10];
-                                        return [4 /*yield*/, api('operservice/GetSignReward', 'activeid,channel,currdate,sceneid', { currdate: res.data.currdate, activeid: 'jxmc_active_0001' })];
+                                        _d.label = 9;
                                     case 9:
+                                        if (!(_i < _c.length)) return [3 /*break*/, 12];
+                                        day = _c[_i];
+                                        if (!(day.fortoday && !day.hasdone)) return [3 /*break*/, 11];
+                                        return [4 /*yield*/, api('operservice/GetSignReward', 'activeid,channel,currdate,sceneid', { currdate: res.data.currdate, activeid: 'jxmc_active_0001' })];
+                                    case 10:
                                         res = _d.sent();
                                         if (res.ret === 0) {
                                             console.log('签到成功!');
@@ -136,34 +131,34 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                         else {
                                             console.log(res);
                                         }
-                                        return [3 /*break*/, 11];
-                                    case 10:
+                                        return [3 /*break*/, 12];
+                                    case 11:
                                         _i++;
-                                        return [3 /*break*/, 8];
-                                    case 11: return [3 /*break*/, 13];
-                                    case 12:
-                                        console.log('没有获取到签到信息！');
-                                        _d.label = 13;
+                                        return [3 /*break*/, 9];
+                                    case 12: return [3 /*break*/, 14];
                                     case 13:
-                                        taskRetCode = 0;
+                                        console.log('没有获取到签到信息！');
                                         _d.label = 14;
                                     case 14:
-                                        if (!(taskRetCode === 0)) return [3 /*break*/, 19];
-                                        return [4 /*yield*/, getTask()];
+                                        taskRetCode = 0;
+                                        _d.label = 15;
                                     case 15:
+                                        if (!(taskRetCode === 0)) return [3 /*break*/, 20];
+                                        return [4 /*yield*/, getTask()];
+                                    case 16:
                                         taskRetCode = _d.sent();
                                         console.log('taskRetCode:', taskRetCode);
-                                        if (!(taskRetCode === 0)) return [3 /*break*/, 17];
+                                        if (!(taskRetCode === 0)) return [3 /*break*/, 18];
                                         return [4 /*yield*/, zx_ts_common_1.default.sleep(4000)];
-                                    case 16:
+                                    case 17:
                                         _d.sent();
-                                        return [3 /*break*/, 18];
-                                    case 17: return [3 /*break*/, 19];
-                                    case 18: return [3 /*break*/, 14];
-                                    case 19:
-                                        if (!(coins >= 5000 && food <= 500)) return [3 /*break*/, 22];
-                                        return [4 /*yield*/, api('operservice/Buy', 'activeid,channel,sceneid,type', { type: '1', activeid: 'jxmc_active_0001' })];
+                                        return [3 /*break*/, 19];
+                                    case 18: return [3 /*break*/, 20];
+                                    case 19: return [3 /*break*/, 15];
                                     case 20:
+                                        if (!(coins >= 5000 && food <= 500)) return [3 /*break*/, 23];
+                                        return [4 /*yield*/, api('operservice/Buy', 'activeid,channel,sceneid,type', { type: '1', activeid: 'jxmc_active_0001' })];
+                                    case 21:
                                         res = _d.sent();
                                         if (res.ret === 0) {
                                             console.log('买草成功:', res.data.newnum);
@@ -172,93 +167,93 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                         }
                                         else {
                                             console.log(res);
-                                            return [3 /*break*/, 22];
+                                            return [3 /*break*/, 23];
                                         }
                                         return [4 /*yield*/, zx_ts_common_1.default.sleep(4000)];
-                                    case 21:
+                                    case 22:
                                         _d.sent();
-                                        return [3 /*break*/, 19];
-                                    case 22: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
-                                    case 23:
-                                        _d.sent();
-                                        _d.label = 24;
+                                        return [3 /*break*/, 20];
+                                    case 23: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
                                     case 24:
-                                        if (!(food >= 10)) return [3 /*break*/, 32];
-                                        return [4 /*yield*/, api('operservice/Feed', 'activeid,channel,sceneid', { activeid: 'jxmc_active_0001' })];
+                                        _d.sent();
+                                        _d.label = 25;
                                     case 25:
+                                        if (!(food >= 10)) return [3 /*break*/, 33];
+                                        return [4 /*yield*/, api('operservice/Feed', 'activeid,channel,sceneid', { activeid: 'jxmc_active_0001' })];
+                                    case 26:
                                         res = _d.sent();
-                                        if (!(res.ret === 0)) return [3 /*break*/, 26];
+                                        if (!(res.ret === 0)) return [3 /*break*/, 27];
                                         food -= 10;
                                         console.log('剩余草:', res.data.newnum);
-                                        return [3 /*break*/, 30];
-                                    case 26:
-                                        if (!(res.ret === 2020)) return [3 /*break*/, 29];
-                                        if (!(res.data.maintaskId === 'pause')) return [3 /*break*/, 28];
+                                        return [3 /*break*/, 31];
+                                    case 27:
+                                        if (!(res.ret === 2020)) return [3 /*break*/, 30];
+                                        if (!(res.data.maintaskId === 'pause')) return [3 /*break*/, 29];
                                         console.log('收🥚');
                                         return [4 /*yield*/, api('operservice/GetSelfResult', 'activeid,channel,itemid,sceneid,type', { petid: petid, type: '11', activeid: 'jxmc_active_0001' })];
-                                    case 27:
+                                    case 28:
                                         res = _d.sent();
                                         if (res.ret === 0) {
                                             console.log('收🥚成功:', res.data.newnum);
                                         }
-                                        _d.label = 28;
-                                    case 28: return [3 /*break*/, 30];
-                                    case 29:
+                                        _d.label = 29;
+                                    case 29: return [3 /*break*/, 31];
+                                    case 30:
                                         console.log(res);
-                                        return [3 /*break*/, 32];
-                                    case 30: return [4 /*yield*/, zx_ts_common_1.default.sleep(4000)];
-                                    case 31:
+                                        return [3 /*break*/, 33];
+                                    case 31: return [4 /*yield*/, zx_ts_common_1.default.sleep(4000)];
+                                    case 32:
                                         _d.sent();
-                                        return [3 /*break*/, 24];
-                                    case 32: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
-                                    case 33:
-                                        _d.sent();
-                                        _d.label = 34;
+                                        return [3 /*break*/, 25];
+                                    case 33: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
                                     case 34:
-                                        if (!1) return [3 /*break*/, 40];
+                                        _d.sent();
                                         _d.label = 35;
                                     case 35:
-                                        _d.trys.push([35, 38, , 39]);
-                                        return [4 /*yield*/, api('operservice/Action', 'activeid,channel,sceneid,type', { type: '2', activeid: 'jxmc_active_0001' })];
+                                        if (!1) return [3 /*break*/, 41];
+                                        _d.label = 36;
                                     case 36:
+                                        _d.trys.push([36, 39, , 40]);
+                                        return [4 /*yield*/, api('operservice/Action', 'activeid,channel,sceneid,type', { type: '2', activeid: 'jxmc_active_0001' })];
+                                    case 37:
                                         res = _d.sent();
-                                        if (res.data.addcoins === 0)
-                                            return [3 /*break*/, 40];
+                                        if (!res.data.addcoins)
+                                            return [3 /*break*/, 41];
                                         console.log('锄草:', res.data.addcoins);
                                         return [4 /*yield*/, zx_ts_common_1.default.sleep(1500)];
-                                    case 37:
-                                        _d.sent();
-                                        return [3 /*break*/, 39];
                                     case 38:
+                                        _d.sent();
+                                        return [3 /*break*/, 40];
+                                    case 39:
                                         e_2 = _d.sent();
                                         console.log('Error:', e_2);
-                                        return [3 /*break*/, 40];
-                                    case 39: return [3 /*break*/, 34];
-                                    case 40: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
-                                    case 41:
-                                        _d.sent();
-                                        _d.label = 42;
+                                        return [3 /*break*/, 41];
+                                    case 40: return [3 /*break*/, 35];
+                                    case 41: return [4 /*yield*/, zx_ts_common_1.default.sleep(2000)];
                                     case 42:
-                                        if (!1) return [3 /*break*/, 48];
+                                        _d.sent();
                                         _d.label = 43;
                                     case 43:
-                                        _d.trys.push([43, 46, , 47]);
-                                        return [4 /*yield*/, api('operservice/Action', 'activeid,channel,sceneid,type', { type: '1', petid: petid, activeid: 'jxmc_active_0001' })];
+                                        if (!1) return [3 /*break*/, 49];
+                                        _d.label = 44;
                                     case 44:
+                                        _d.trys.push([44, 47, , 48]);
+                                        return [4 /*yield*/, api('operservice/Action', 'activeid,channel,sceneid,type', { type: '1', petid: petid, activeid: 'jxmc_active_0001' })];
+                                    case 45:
                                         res = _d.sent();
-                                        if (res.data.addcoins === 0)
-                                            return [3 /*break*/, 48];
+                                        if (!res.data.addcoins)
+                                            return [3 /*break*/, 49];
                                         console.log('挑逗:', res.data.addcoins);
                                         return [4 /*yield*/, zx_ts_common_1.default.sleep(1500)];
-                                    case 45:
-                                        _d.sent();
-                                        return [3 /*break*/, 47];
                                     case 46:
+                                        _d.sent();
+                                        return [3 /*break*/, 48];
+                                    case 47:
                                         e_3 = _d.sent();
                                         console.log('Error:', e_3);
-                                        return [3 /*break*/, 48];
-                                    case 47: return [3 /*break*/, 42];
-                                    case 48: return [2 /*return*/];
+                                        return [3 /*break*/, 49];
+                                    case 48: return [3 /*break*/, 43];
+                                    case 49: return [2 /*return*/];
                                 }
                             });
                         });
