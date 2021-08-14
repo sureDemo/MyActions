@@ -1,8 +1,4 @@
 "use strict";
-/**
- * 财富岛热气球挂后台
- * export CFD_LOOP_DELAY=20000  // 捡气球间隔时间，单位毫秒
- */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -71,7 +67,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 //const notify = require('./sendNotify')
 dotenv.config();
-var zxCommon = require('./zx_common.js');
+var zxCommon = require('./zx_common');
 var zxObject = new zxCommon.ZxObject('财富岛热气球挂后台');
 var $ = zxObject.$;
 var appId = 10028, fingerprint, token, enCryptMethodJD;
@@ -82,8 +78,11 @@ var UserName, index;
     var filename, stream, fsHash;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, requestAlgo()];
+            case 0: 
+            //$.init();
+            return [4 /*yield*/, requestAlgo()];
             case 1:
+                //$.init();
                 _a.sent();
                 filename = __filename.split('/').pop();
                 stream = fs.createReadStream(filename);
@@ -154,7 +153,7 @@ var UserName, index;
                                         console.log(e_1);
                                         return [3 /*break*/, 13];
                                     case 13:
-                                        t = process.env.CFD_LOOP_DELAY ? parseInt(process.env.CFD_LOOP_DELAY) : zx_USER_AGENTS_1.getRandomNumberByRange(1000 * 30, 1000 * 60);
+                                        t = process.env.CFD_LOOP_DELAY ? parseInt(process.env.CFD_LOOP_DELAY) : zx_USER_AGENTS_1.getRandomNumberByRange(1000 * 3, 1000 * 6);
                                         return [4 /*yield*/, $.sleep(t)];
                                     case 14:
                                         _b.sent();
