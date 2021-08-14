@@ -105,6 +105,7 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                         console.log('现有草:', food);
                                         console.log('金币:', coins);
                                         if (!((_b = (_a = homePageInfo.data) === null || _a === void 0 ? void 0 : _a.cow) === null || _b === void 0 ? void 0 : _b.lastgettime)) return [3 /*break*/, 7];
+                                        lastgettime = homePageInfo.data.cow.lastgettime;
                                         return [4 /*yield*/, api('operservice/GetCoin', 'activeid,channel,sceneid,token', { token: A(lastgettime), activeid: 'jxmc_active_0001' })];
                                     case 6:
                                         res = _d.sent();
@@ -335,7 +336,7 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                             console.log('不助力自己');
                                         }
                                         else if (res.ret === 0) {
-                                            console.log('助力结果：', res);
+                                            console.log('助力结果：', res.message + " ret:" + res.ret);
                                             console.log('助力成功，获得：', res.data.addcoins);
                                         }
                                         else {
