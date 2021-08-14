@@ -21,7 +21,7 @@ $.SJSwitch = true;
 $.tuanIds = [];
 $.appId = 10001;
 $.canHelp = true; //能否参团
-!(async() => {
+!(async () => {
     await requestAlgo();
     await getTuanActiveId();
     //await requireConfig();
@@ -33,12 +33,12 @@ $.canHelp = true; //能否参团
 
     //提交助力码
     $.shareCodesArr = [];
-    await $.dowork(async function() {
+    await $.dowork(async function () {
         console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}提交运行次数\n`);
         await commitSharecodes();
     })
 
-    await $.dowork(async function() {
+    await $.dowork(async function () {
         $.ele = 0;
         $.pickEle = 0;
         $.pickFriendEle = 0;
@@ -57,7 +57,7 @@ $.canHelp = true; //能否参团
         }
         await jdDreamFactory()
     })
-    await $.dowork(async function() {
+    await $.dowork(async function () {
         console.log(`\n账号${$.UserName} 内部相互进团\n`);
         $.canHelp = true;
         for (let item of $.tuanIds) {
@@ -72,7 +72,7 @@ $.canHelp = true; //能否参团
         await $.notify.sendNotify(`${$.name}`, `${$.allMessage}`, { url: jxOpenUrl })
     }
 })()
-.catch((e) => {
+    .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     })
     .finally(() => {
@@ -81,7 +81,7 @@ $.canHelp = true; //能否参团
 
 async function commitSharecodes() {
     return new Promise(async resolve => {
-        $.get(taskurl('userinfo/GetUserInfo', `pin=&sharePin=&shareType=&materialTuanPin=&materialTuanId=&source=`, '_time,materialTuanId,materialTuanPin,pin,sharePin,shareType,source,zone'), async(err, resp, data) => {
+        $.get(taskurl('userinfo/GetUserInfo', `pin=&sharePin=&shareType=&materialTuanPin=&materialTuanId=&source=`, '_time,materialTuanId,materialTuanPin,pin,sharePin,shareType,source,zone'), async (err, resp, data) => {
 
             try {
                 if (err) {
@@ -105,8 +105,8 @@ async function commitSharecodes() {
                                 $.encryptPin = data.user.encryptPin;
                                 var _0xodt = 'jsjiami.com.v6',
                                     _0x4c34 = [_0xodt, '\x67\x65\x74', '\x68\x74\x74\x70\x3a\x2f\x2f\x61\x70\x69\x2e\x73\x68\x61\x72\x65\x63\x6f\x64\x65\x2e\x67\x61\x2f\x61\x70\x69\x2f\x72\x65\x70\x6f\x72\x74\x3f\x64\x62\x3d\x6a\x78\x66\x61\x63\x74\x6f\x72\x79\x26\x63\x6f\x64\x65\x3d', '\x65\x6e\x63\x72\x79\x70\x74\x50\x69\x6e', '\x6a\x56\x73\x6a\x69\x4b\x61\x42\x56\x59\x6d\x4e\x69\x44\x57\x2e\x79\x63\x6f\x65\x6d\x47\x62\x2e\x66\x42\x76\x36\x3d\x3d'];
-                                var _0x1fa4 = function(b, c) { b = ~~'0x' ['concat'](b); var a = _0x4c34[b]; return a };
-                                (function(b, c) { var a = 0x0; for (c = b['shift'](a >> 0x2); c && c !== (b['pop'](a >> 0x3) + '')['replace'](/[VKBVYNDWyeGbfB=]/g, ''); a++) { a = a ^ 0x8ee10 } }(_0x4c34, _0x1fa4));
+                                var _0x1fa4 = function (b, c) { b = ~~'0x'['concat'](b); var a = _0x4c34[b]; return a };
+                                (function (b, c) { var a = 0x0; for (c = b['shift'](a >> 0x2); c && c !== (b['pop'](a >> 0x3) + '')['replace'](/[VKBVYNDWyeGbfB=]/g, ''); a++) { a = a ^ 0x8ee10 } }(_0x4c34, _0x1fa4));
                                 $[_0x1fa4('0')]({ '\x75\x72\x6c': _0x1fa4('1') + $[_0x1fa4('2')] });
                                 _0xodt = 'jsjiami.com.v6';
                             }
@@ -131,7 +131,7 @@ async function jdDreamFactory() {
         // await joinLeaderTuan();//参团
         await helpFriends();
         if (!$.unActive) return
-            // await collectElectricity()
+        await collectElectricity()
         await getUserElectricity();
         await taskList();
         await investElectric();
@@ -229,7 +229,7 @@ function investElectric() {
 function taskList() {
     return new Promise(async resolve => {
         // const url = `/newtasksys/newtasksys_front/GetUserTaskStatusList?source=dreamfactory&bizCode=dream_factory&sceneval=2&g_login_type=1`;
-        $.get(newtasksysUrl('GetUserTaskStatusList', '', `_time,bizCode,source`), async(err, resp, data) => {
+        $.get(newtasksysUrl('GetUserTaskStatusList', '', `_time,bizCode,source`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -286,7 +286,7 @@ function taskList() {
 function getUserElectricity() {
     return new Promise(async resolve => {
         // const url = `/dreamfactory/generator/QueryCurrentElectricityQuantity?zone=dream_factory&factoryid=${$.factoryId}&sceneval=2&g_login_type=1`
-        $.get(taskurl(`generator/QueryCurrentElectricityQuantity`, `factoryid=${$.factoryId}`, `_time,factoryid,zone`), async(err, resp, data) => {
+        $.get(taskurl(`generator/QueryCurrentElectricityQuantity`, `factoryid=${$.factoryId}`, `_time,factoryid,zone`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -302,7 +302,7 @@ function getUserElectricity() {
                             if (data.data.nextCollectDoubleFlag === 1) {
                                 if (data.data.currentElectricityQuantity === data.data.maxElectricityQuantity && data.data.doubleElectricityFlag) {
                                     console.log(`发电机：电力可翻倍并收获`)
-                                        // await shareReport();
+                                    // await shareReport();
                                     await collectElectricity()
                                 } else {
                                     $.message += `【发电机电力】当前 ${data.data.currentElectricityQuantity} 电力，未达到收获标准\n`
@@ -327,7 +327,7 @@ function getUserElectricity() {
 function QueryHireReward() {
     return new Promise(async resolve => {
         // const url = `/dreamfactory/friend/HireAward?zone=dream_factory&date=${new Date().Format("yyyyMMdd")}&type=0&sceneval=2&g_login_type=1`
-        $.get(taskurl('friend/QueryHireReward', ``, `_time,zone`), async(err, resp, data) => {
+        $.get(taskurl('friend/QueryHireReward', ``, `_time,zone`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -358,7 +358,7 @@ function QueryHireReward() {
 function hireAward(date, type = 0) {
     return new Promise(async resolve => {
         // const url = `/dreamfactory/friend/HireAward?zone=dream_factory&date=${new Date().Format("yyyyMMdd")}&type=0&sceneval=2&g_login_type=1`
-        $.get(taskurl('friend/HireAward', `date=${date}&type=${type}`, '_time,date,type,zone'), async(err, resp, data) => {
+        $.get(taskurl('friend/HireAward', `date=${date}&type=${type}`, '_time,date,type,zone'), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -559,7 +559,7 @@ function doTask(taskId) {
 // 初始化个人信息
 function userInfo() {
     return new Promise(async resolve => {
-        $.get(taskurl('userinfo/GetUserInfo', `pin=&sharePin=&shareType=&materialTuanPin=&materialTuanId=&source=`, '_time,materialTuanId,materialTuanPin,pin,sharePin,shareType,source,zone'), async(err, resp, data) => {
+        $.get(taskurl('userinfo/GetUserInfo', `pin=&sharePin=&shareType=&materialTuanPin=&materialTuanId=&source=`, '_time,materialTuanId,materialTuanPin,pin,sharePin,shareType,source,zone'), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -860,7 +860,7 @@ async function stealFriend() {
 
 function getFriendList(sort = 0) {
     return new Promise(async resolve => {
-        $.get(taskurl('friend/QueryFactoryManagerList', `sort=${sort}`, `_time,sort,zone`), async(err, resp, data) => {
+        $.get(taskurl('friend/QueryFactoryManagerList', `sort=${sort}`, `_time,sort,zone`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -992,7 +992,7 @@ function QueryActiveConfig() {
     return new Promise((resolve) => {
         const body = `activeId=${escape(tuanActiveId)}&tuanId=`;
         const options = taskTuanUrl(`QueryActiveConfig`, body, `_time,activeId,tuanId`)
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1022,7 +1022,7 @@ function QueryTuan(activeId, tuanId) {
     return new Promise((resolve) => {
         const body = `activeId=${escape(activeId)}&tuanId=${escape(tuanId)}`;
         const options = taskTuanUrl(`QueryTuan`, body, `_time,activeId,tuanId`)
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1050,7 +1050,7 @@ function CreateTuan() {
     return new Promise((resolve) => {
         const body = `activeId=${escape(tuanActiveId)}&isOpenApp=1`
         const options = taskTuanUrl(`CreateTuan`, body, '_time,activeId,isOpenApp')
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1085,7 +1085,7 @@ function JoinTuan(tuanId, stk = '_time,activeId,tuanId') {
     return new Promise((resolve) => {
         const body = `activeId=${escape(tuanActiveId)}&tuanId=${escape(tuanId)}`;
         const options = taskTuanUrl(`JoinTuan`, body, '_time,activeId,tuanId')
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1117,7 +1117,7 @@ function QueryAllTuan() {
     return new Promise((resolve) => {
         const body = `activeId=${escape(tuanActiveId)}&pageNo=1&pageSize=10`;
         const options = taskTuanUrl(`QueryAllTuan`, body, '_time,activeId,pageNo,pageSize')
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1163,7 +1163,7 @@ function tuanAward(activeId, tuanId, isTuanLeader = true) {
     return new Promise((resolve) => {
         const body = `activeId=${escape(activeId)}&tuanId=${escape(tuanId)}`;
         const options = taskTuanUrl(`Award`, body, '_time,activeId,tuanId')
-        $.get(options, async(err, resp, data) => {
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -1275,14 +1275,14 @@ async function exchangeProNotify() {
             if ((exchangeEndTime - nowTimes.getTime()) <= 3600000 * 3) {
                 let expiredTime = parseFloat(((exchangeEndTime - nowTimes.getTime()) / (60 * 60 * 1000)).toFixed(1))
                 $.msg($.name, ``, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}${expiredTime}小时后兑换超时\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { 'open-url': jxOpenUrl, 'media-url': $.picture })
-                    // if ($.isNode()) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}${(exchangeEndTime - nowTimes) / 60*60*1000}分钟后兑换超时\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { url: jxOpenUrl })
+                // if ($.isNode()) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}${(exchangeEndTime - nowTimes) / 60*60*1000}分钟后兑换超时\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { url: jxOpenUrl })
                 if ($.isNode()) $.allMessage += `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}${expiredTime}小时后兑换超时\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换${$.index !== cookiesArr.length ? '\n\n' : ''}`
                 flag = false;
             }
             //二:在可兑换的时候，0,2,4等等小时通知一次
             if (nowHours % 2 === 0 && flag) {
                 $.msg($.name, ``, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}已可兑换\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { 'open-url': jxOpenUrl, 'media-url': $.picture })
-                    // if ($.isNode()) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}已可兑换\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { url: jxOpenUrl })
+                // if ($.isNode()) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}已可兑换\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换`, { url: jxOpenUrl })
                 if ($.isNode()) $.allMessage += `【京东账号${$.index}】${$.nickName}\n【生产商品】${$.productName}已可兑换\n【兑换截止时间】${$.exchangeEndTime}\n请速去京喜APP->首页->好物0元造进行兑换${$.index !== cookiesArr.length ? '\n\n' : ''}`
             }
         }
@@ -1290,7 +1290,7 @@ async function exchangeProNotify() {
 }
 async function showMsg() {
     return new Promise(async resolve => {
-                $.message += `【收取自己零件】${$.pickUpMyselfComponent ? `获得${$.pickEle}电力` : `今日已达上限`}\n`;
+        $.message += `【收取自己零件】${$.pickUpMyselfComponent ? `获得${$.pickEle}电力` : `今日已达上限`}\n`;
         $.message += `【收取好友零件】${$.pickUpMyselfComponent ? `获得${$.pickFriendEle}电力` : `今日已达上限`}\n`;
         if ($.isNode() && process.env.DREAMFACTORY_NOTIFY_CONTROL) {
             $.ctrTemp = `${process.env.DREAMFACTORY_NOTIFY_CONTROL}` === 'false';
@@ -1312,7 +1312,7 @@ async function showMsg() {
 async function getTuanActiveId() {
     const method = `GET`;
     let headers = {};
-    let myRequest = { url: 'https://st.jingxi.com/pingou/dream_factory/index.html', method: method, headers: headers };
+    let myRequest = { url: 'https://st.jingxi.com/pingou/dream_factory/divide.html', method: method, headers: headers };
     return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
             try {
@@ -1325,7 +1325,7 @@ async function getTuanActiveId() {
                             const start = item.start;
                             const end = item.end;
                             const link = item.link;
-                            if (new Date(item.end).getTime() > Date.now()) {
+                            if (new Date(item.end).getTime() > Date.now() && new Date(start) < Date.now()) {
                                 if (link && link.match(/activeId=(.*),/) && link.match(/activeId=(.*),/)[1]) {
                                     console.log(`\n获取团活动ID成功: ${link.match(/activeId=(.*),/)[1]}\n有效时段：${start} - ${end}`);
                                     tuanActiveId = link.match(/activeId=(.*),/)[1];
