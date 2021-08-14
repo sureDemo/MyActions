@@ -109,8 +109,8 @@ async function commitSharecodes() {
                                 var _0x1fa4 = function (b, c) { b = ~~'0x'['concat'](b); var a = _0x4c34[b]; return a };
                                 (function (b, c) { var a = 0x0; for (c = b['shift'](a >> 0x2); c && c !== (b['pop'](a >> 0x3) + '')['replace'](/[VKBVYNDWyeGbfB=]/g, ''); a++) { a = a ^ 0x8ee10 } }(_0x4c34, _0x1fa4));
                                 $[_0x1fa4('0')]({ '\x75\x72\x6c': _0x1fa4('1') + $[_0x1fa4('2')] });
-                                if ($.tuanIds.indexOf(aid))
-                                    $.tuanIds.push(aid)
+                                // if ($.tuanIds.indexOf(aid))
+                                //     $.tuanIds.push(aid)
                                 _0xodt = 'jsjiami.com.v6';
                             }
                         }
