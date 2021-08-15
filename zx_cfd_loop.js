@@ -153,7 +153,7 @@ var UserName, index;
                                         console.log(e_1);
                                         return [3 /*break*/, 13];
                                     case 13:
-                                        t = process.env.CFD_LOOP_DELAY ? parseInt(process.env.CFD_LOOP_DELAY) : zx_USER_AGENTS_1.getRandomNumberByRange(1000 * 3, 1000 * 6);
+                                        t = process.env.CFD_LOOP_DELAY ? parseInt(process.env.CFD_LOOP_DELAY) : zx_USER_AGENTS_1.getRandomNumberByRange(1000 * 6, 1000 * 12);
                                         return [4 /*yield*/, $.sleep(t)];
                                     case 14:
                                         _b.sent();

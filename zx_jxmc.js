@@ -342,7 +342,7 @@ zx_ts_common_1.default.init("京喜牧场", 'jxmc', -1);
                                         else {
                                             console.log(res);
                                         }
-                                        return [4 /*yield*/, zx_ts_common_1.default.sleep(1000)];
+                                        return [4 /*yield*/, zx_ts_common_1.default.sleep(4000)];
                                     case 3:
                                         _a.sent();
                                         _a.label = 4;
