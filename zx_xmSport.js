@@ -62,7 +62,7 @@ if (!accounts || accounts.length < 1) {
 
 async function DoStep(username, password, logintoken) {
     //需要修改的运动步数波动范围，脚本默认修改步数范围为2W到2w5
-    const step = randomFriendPin($.getdata('xmMinStep') * 1 || 20000, $.getdata('xmMaxStep') * 1 || 25000);
+    const step = randomFriendPin($.getdata('xmMinStep') * 1 || 25000, $.getdata('xmMaxStep') * 1 || 35000);
     await start(username, password, logintoken, step);
 }
 
