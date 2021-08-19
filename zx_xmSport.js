@@ -34,16 +34,17 @@ if (!accounts || accounts.length < 1) {
 }
 
 !(async () => {
-    let username = '', password = '', logintoken = ''
+    let username = '', password = '', step = 10000, logintoken = ''
     for (let i = 0; i < accounts.length; i++) {
         console.log(`\n******开始【账号${i + 1}】*********\n`);
         if (accounts[i] && accounts[i].indexOf("@")) {
             let upt = accounts[i].split("@");
             username = upt[0];
             password = upt[1];
-            logintoken = upt.length > 2 ? upt[2] : '';
+            step = upt.length > 2 ? upt[2] : 20000;
+            logintoken = upt.length > 3 ? upt[3] : '';
             allMessage += "\n\n账号" + username + "\n"
-            await DoStep(username, password, logintoken);
+            await DoStep(username, password, step, logintoken);
         } else {
             console.log("账号 " + i + " 格式不正确，请检查")
             continue;
@@ -60,9 +61,9 @@ if (!accounts || accounts.length < 1) {
 })
 
 
-async function DoStep(username, password, logintoken) {
+async function DoStep(username, password, step, logintoken) {
     //需要修改的运动步数波动范围，脚本默认修改步数范围为2W到2w5
-    const step = randomFriendPin($.getdata('xmMinStep') * 1 || 25000, $.getdata('xmMaxStep') * 1 || 35000);
+    let stepValue = randomFriendPin(step || 20000, step + 5000 || 25000);
     await start(username, password, logintoken, step);
 }
 
