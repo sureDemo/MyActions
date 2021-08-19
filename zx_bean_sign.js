@@ -92,7 +92,7 @@ async function execSign() {
         }
         //运行完成后，删除下载的文件
         await deleteFile(resultPath); //删除result.txt
-        console.log(`\n\n*****************${new Date(new Date().getTime()).toLocaleString('zh', {hour12: false})} 京东账号${$.index} ${$.nickName || $.UserName} ${$.name}完成*******************\n\n`);
+        console.log(`\n\n*****************${new Date(new Date().getTime()).toLocaleString('zh', { hour12: false })} 京东账号${$.index} ${$.nickName || $.UserName} ${$.name}完成*******************\n\n`);
     } catch (e) {
         console.log("京东签到脚本执行异常:" + e);
     }
@@ -128,9 +128,14 @@ async function downFile() {
 
 async function changeFile(content) {
     console.log(`开始替换变量`)
-    //let newContent = content.replace(/var Key = '.*'/, `var Key = '${$.cookie}'`);
-    // let newContent = content.replace(/var OtherKey = ``/, `var OtherKey = '[{"cookie": "${$.cookie}","jrBody": "reqData=xxx"}]'`);
-    let newContent = content.replace(/var OtherKey = ``/, `var OtherKey = '[{"cookie": "${$.cookie}"}]'`);
+        //let newContent = content.replace(/var Key = '.*'/, `var Key = '${$.cookie}'`);
+        // let newContent = content.replace(/var OtherKey = ``/, `var OtherKey = '[{"cookie": "${$.cookie}","jrBody": "reqData=xxx"}]'`);
+    let newContent = "";
+    if ($.index === 1) {
+        newContent = content.replace(/var OtherKey = ``/, `var OtherKey = \`[{"cookie": "${$.cookie}","jrBody": "reqData=%7B%22videoId%22%3A%22311372930347370496%22%2C%22channelSource%22%3A%22JRAPP6.0%22%2C%22encryptData%22%3A%22%7B'data'%3A'%2BC07RK9V9gYLGBL2Tpt1l3OP4S1jEVeuNtdH9blgPykZPleOFFHzMeYaCrXNW1snWghNWl8DExYhCdasta2HLwLL97YYhwPLaJ2G7ji4JokjQ8t%2BrjTl6tOtFNr%2BtceaFPID4y8kjuOqOLL1hKku6Q%3D%3D'%2C'key'%3A'Pn9FUlFhX%2BHJif0thJ1F2rVhWJEv5zWHg3%2FzTLkcxx32bOcsicASm9kdeg3nAZry9TIlo21LoE55lUcDTGvXiGOCePb7j%2BJDs%2Ffq%2FapM3nRq4pMNAHvGDp6FnvGiXD6PfbLhOt%2FtQVhn0kto7z25Xj3ttIWlBhCkuNxrj6BIQVQ%2F2U7n32%2FyiJUn8KJejHmH7TtF99iuIbAkj2qTk5ALEFdSGbLOKCahNd8rPDF47gTkRKCA91MCTX%2BRQe%2FtWJadSvx6f9bOyGmxa4olwOE7q4EfPJ5RTkCedwq5SQeVuQIc2vKQ0CrWguNWTuCNquTHLFEYby3%2BwGqHEWotrPXc3g%3D%3D'%2C'version'%3A'2'%2C'shakey'%3A'4hqrnwGzxzQiAP18jLaMvIBOdi3LB4Aim3BwSrBrpNI%3D'%7D%22%2C%22channelLv%22%3A%22icon%22%2C%22riskDeviceParam%22%3A%22%7B%5C%22deviceType%5C%22%3A%5C%22EML-AL00%5C%22%2C%5C%22traceIp%5C%22%3A%5C%22%5C%22%2C%5C%22macAddress%5C%22%3A%5C%22%5C%22%2C%5C%22imei%5C%22%3A%5C%22%5C%22%2C%5C%22os%5C%22%3A%5C%22android%5C%22%2C%5C%22osVersion%5C%22%3A%5C%2210%5C%22%2C%5C%22fp%5C%22%3A%5C%2219829ebdeb310df09e1e84ae47547441%5C%22%2C%5C%22ip%5C%22%3A%5C%22%5C%22%2C%5C%22eid%5C%22%3A%5C%22VYKUZ6UTSXCIBIVUTXZ3W2MQKB7SZXQOSJBWLD6BYXCSMCUVLF4PKXUTGWTQK5DZDSAXBBDFSY5TUA5IH4WMVJDTHI%5C%22%2C%5C%22appId%5C%22%3A%5C%22com.jd.jrapp%5C%22%2C%5C%22openUUID%5C%22%3A%5C%22%5C%22%2C%5C%22uuid%5C%22%3A%5C%2233369323831673935323839373032-316D2334323931323533453133434%5C%22%2C%5C%22clientVersion%5C%22%3A%5C%226.2.10%5C%22%2C%5C%22resolution%5C%22%3A%5C%221080.0*2159.0%5C%22%2C%5C%22channelInfo%5C%22%3A%5C%22huawei%2350966%5C%22%2C%5C%22networkType%5C%22%3A%5C%22wifi%5C%22%2C%5C%22startNo%5C%22%3A%5C%224%5C%22%2C%5C%22openid%5C%22%3A%5C%22%5C%22%2C%5C%22token%5C%22%3A%5C%22%5C%22%2C%5C%22sid%5C%22%3A%5C%22%5C%22%2C%5C%22terminalType%5C%22%3A%5C%2202%5C%22%2C%5C%22longtitude%5C%22%3A%5C%22%5C%22%2C%5C%22latitude%5C%22%3A%5C%22%5C%22%2C%5C%22securityData%5C%22%3A%5C%22%5C%22%2C%5C%22jscContent%5C%22%3A%5C%22%5C%22%2C%5C%22fnHttpHead%5C%22%3A%5C%22%5C%22%2C%5C%22receiveRequestTime%5C%22%3A%5C%22%5C%22%2C%5C%22port%5C%22%3A%5C%22%5C%22%2C%5C%22appType%5C%22%3A3%2C%5C%22optType%5C%22%3A%5C%22%5C%22%2C%5C%22idfv%5C%22%3A%5C%22%5C%22%2C%5C%22wifiSSID%5C%22%3A%5C%22%5C%22%2C%5C%22wifiMacAddress%5C%22%3A%5C%22%5C%22%2C%5C%22cellIpAddress%5C%22%3A%5C%22%5C%22%2C%5C%22wifiIpAddress%5C%22%3A%5C%22%5C%22%2C%5C%22sdkToken%5C%22%3A%5C%22SIHQNZ23RJWCVIU73AZ7KIX5YNDJ63VVKUQSE5FOJ6Z7FWCTYQE52FKRB6MUX642EY2EIV2TJSGF6%5C%22%7D%22%7D"}]\``);
+    } else {
+        newContent = content.replace(/var OtherKey = ``/, `var OtherKey = '[{"cookie": "${$.cookie}""}]'`);
+    }
     newContent = newContent.replace(/const NodeSet = 'CookieSet.json'/, `const NodeSet = '${NodeSet}'`)
     if (process.env.JD_BEAN_STOP && process.env.JD_BEAN_STOP !== '0') {
         newContent = newContent.replace(/var stop = '0'/, `var stop = '${process.env.JD_BEAN_STOP}'`);
