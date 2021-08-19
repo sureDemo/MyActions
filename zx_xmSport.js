@@ -20,7 +20,7 @@ let allMessage = '';
 //获取账号
 if ($.isNode()) {
     let account = process.env.MI_ACCOUNT
-    if (!account) {
+       if (!account) {
         console.log("请先配置环境变量 MI_ACCOUNT，小米运动密码不能包含@ $ 符号\n账号、密码必选，token可选。有token默认token，无token，用户名密码登录 \n格式：MI_ACCOUNT=账号1@账号1密码@账号1token&账号2@账号2密码@账号2token")
         return false;
     }
@@ -41,7 +41,7 @@ if (!accounts || accounts.length < 1) {
             let upt = accounts[i].split("@");
             username = upt[0];
             password = upt[1];
-            step = upt.length > 2 ? upt[2] : 20000;
+            step = upt.length > 2 ? parseInt(upt[2]) : 20000;
             logintoken = upt.length > 3 ? upt[3] : '';
             allMessage += "\n\n账号" + username + "\n"
             await DoStep(username, password, step, logintoken);
@@ -63,7 +63,7 @@ if (!accounts || accounts.length < 1) {
 
 async function DoStep(username, password, step, logintoken) {
     //需要修改的运动步数波动范围，脚本默认修改步数范围为2W到2w5
-    let stepValue = randomFriendPin(step || 20000, step + 5000 || 25000);
+    let stepValue = randomFriendPin(step || 20000, (step + 5000) || 25000);
     await start(username, password, logintoken, stepValue);
 }
 
