@@ -64,7 +64,7 @@ if (!accounts || accounts.length < 1) {
 async function DoStep(username, password, step, logintoken) {
     //需要修改的运动步数波动范围，脚本默认修改步数范围为2W到2w5
     let stepValue = randomFriendPin(step || 20000, step + 5000 || 25000);
-    await start(username, password, logintoken, step);
+    await start(username, password, logintoken, stepValue);
 }
 
 
