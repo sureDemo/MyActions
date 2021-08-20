@@ -43,7 +43,7 @@ if (!accounts || accounts.length < 1) {
             password = upt[1];
             step = upt.length > 2 ? parseInt(upt[2]) : 20000;
             logintoken = upt.length > 3 ? upt[3] : '';
-            allMessage += "\n\n账号" + username + "\n"
+            allMessage += "\n账号" + username + "\n"
             await DoStep(username, password, step, logintoken);
         } else {
             console.log("账号 " + i + " 格式不正确，请检查")
@@ -51,6 +51,7 @@ if (!accounts || accounts.length < 1) {
         }
     }
     if ($.isNode() && allMessage) {
+        allMessage+="领取入口：mp://mkSLDJTKXz9cNxn\n"
         await notify.sendNotify(`${$.name}`, `${allMessage}`)
     }
 
