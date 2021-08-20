@@ -214,7 +214,10 @@ async function zy(){
 async function control(){
      for(let i = 0; i < list6tokenArr.distinct().length; i++){
    helpcode = list6tokenArr[i]
-   await dosupport()
+   let rv=await dosupport()
+   if(!rv){
+     break;
+   }
    await $.wait(4000)
 }
 }
@@ -223,19 +226,23 @@ async function dosupport(){
  const MyRequest = PostRequest(``,body)
  return new Promise((resolve) => {
    $.post(MyRequest,async(error, response, data) =>{
+    let rv=true;
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.data.bizCode == 0){
            console.log(result.data.bizMsg+"获得"+result.data.result.score+";共有"+result.data.result.userScore+"\n")
    await $.wait(4000)
-        }else{
+        }else{          
            console.log(result.data.bizMsg+"\n")
+           if(result.data.bizCode==103){
+            rv= false;
+           }
         }
         }catch(e) {
           $.logErr(e, response);
       } finally {
-        resolve();
+        resolve(rv);
       } 
     })
    })
