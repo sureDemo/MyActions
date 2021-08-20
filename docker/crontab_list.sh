@@ -165,6 +165,16 @@
 33 4,7 8-20 8 * node /scripts/zx_golden_machine.js >> /scripts/logs/zx_golden_machine.log 2>&1
 #晓龙
 18 9,19 13-25 8 * node /scripts/zx_gua_xiaolong.js >> /scripts/logs/zx_gua_xiaolong.log 2>&1
+#京东到家果园
+10 0,3,8,11,17 * * * node /scripts/zx_jddj_fruit.js >> /scripts/logs/zx_jddj_fruit.log 2>&1
+#京东到家鲜豆任务
+0 0 */1 * * node /scripts/zx_jddj_bean.js >> /scripts/logs/zx_jddj_bean.log 2>&1
+#京东到家收集水车水滴
+*/5 * * * * node /scripts/zx_jddj_fruit_collectWater.js >> /scripts/logs/zx_jddj_fruit_collectWater.log 2>&1
+#京东到家收集庄园水滴
+*/5 * * * * node /scripts/zx_jddj_getPoints.js >> /scripts/logs/zx_jddj_getPoints.log 2>&1
+#京东到家庄园浇水
+15 0 * * * node /scripts/zx_jddj_plantBeans.js >> /scripts/logs/zx_jddj_plantBeans.log 2>&1
 
 ##############默认注释活动##############
 # 京东试用（默认注释，请配合取关脚本使用）
