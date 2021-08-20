@@ -232,6 +232,7 @@ async function Zy(){
 async function control(){
      for(let i = 0; i < list6tokenArr.distinct().length; i++){
    helpcode = list6tokenArr[i]
+   console.log("helpcode:"+helpcode+"\n")
    await dosupport()
    await $.wait(4000)
 }
