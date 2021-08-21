@@ -69,6 +69,7 @@ async function commitSharecodes() {
                         data = $.toObj(data)
                             if (data?.data?.result?.taskVos) {
                                 $.shareCodesArr.push(data?.data?.result?.taskVos[0].assistTaskDetailVo.taskToken)
+                                console.log("助力码：" + data?.data?.result?.taskVos[0].assistTaskDetailVo.taskToken)
                                     // console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data?.data?.result?.taskVos[0].assistTaskDetailVo.taskToken}\n`);
                                 var __encode = 'jsjiami.com',
                                     _a = {},
