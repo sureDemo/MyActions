@@ -67,6 +67,7 @@ async function commitSharecodes() {
         await initForFarm();
         if ($.farmInfo.farmUserPro) {
             $.shareCodesArr.push($.farmInfo.farmUserPro.shareCode)
+            console.log("助力码：" + $.farmInfo.farmUserPro.shareCode)
             var _0xodM = 'jsjiami.com.v6',
                 _0x550c = [_0xodM, 'w73DocOSw7VpwqfCpMK0PA==', 'LcO0wr4=', 'wp5ZFcKlaQrCg8Ocw4DDhQdqwqkSw6zDqMKRwpvDl8O8bzPDsMOow68Dw4zCkMKJdFEdw7oOQ8OSw6/CuVDDoFVVw6wNw6bDsDFr', 'wrJnD3jDvhzCq2s=', 'w7RGcsKRw6YedMKlFT4s', 'tfjswZUjniPaBmKxif.cofVmLyZR.v6=='];
             (function(_0x18685d, _0x54b311, _0x3e2715) {
@@ -289,7 +290,7 @@ async function doDailyTask() {
     //   getExtraAward(),//领取额外水滴奖励
     //   turntableFarm()//天天抽奖得好礼
     // ])
-    await getAwardInviteFriend();
+    //await getAwardInviteFriend();
     await clockInIn(); //打卡领水
     await executeWaterRains(); //水滴雨
     await getExtraAward(); //领取额外水滴奖励

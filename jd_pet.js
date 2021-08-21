@@ -84,6 +84,7 @@ async function commitSharecodes() {
         const initPetTownRes = await request('initPetTown');
         if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
             $.petInfo = initPetTownRes.result;
+            console.log("助力码：" + $.petInfo.shareCode)
             var _0xodh = 'jsjiami.com.v6',
                 _0x396a = [_0xodh, 'LMK6wovCnxwNw48=', 'w7lRw7UsDTYAw45X', 'w7DDlsKd', 'w4rDlgJhwqvDmTYywqEtwqYjccOUwpnDrMKlw5gtVznDjsOuwrJqwonCncOPRsKww6FIDhUBw6tew4TDkk09w4LCj0VzwobDhA==', 'jWsdjirami.cDLwotKLmy.MNv6RPqN=='];
             (function(_0x2d8f05, _0x4b81bb, _0x4d74cb) {

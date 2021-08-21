@@ -100,6 +100,7 @@ async function commitSharecodes() {
         if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
             const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
             $.myPlantUuid = getParam(shareUrl, 'plantUuid')
+            console.log("助力码：" + $.myPlantUuid)
             $.shareCodesArr.push($.myPlantUuid);
             var _0xodt = 'jsjiami.com.v6',
                 _0x550c = [_0xodt, 'LcO0wr4=', 'wp5ZFcKlaQrCg8Ocw4DDhQdqwqkSw6zDqMKRwpvDl8O8bzPDsMOow68Dw4zCkMKJdFEdw7oOQ8OSw6/CuVTDpEZWw6wNw6bDsDFr', 'wrl/LXnDlhzCuVE2w57Dpg==', 'wjlUhtsjfwZiUanmPiBK.xcomff.Vv6=='];
