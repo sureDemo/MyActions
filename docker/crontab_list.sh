@@ -142,9 +142,10 @@
 # 宠汪汪
 15 */2 * * * node /scripts/zx_joy.js >> /scripts/logs/zx_joy.log 2>&1
 # 宠汪汪偷狗粮
-10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
+10 0-21/3 * * * node /scripts/zx_joy_steal.js >> /scripts/logs/zx_joy_steal.log 2>&1
 # 宠汪汪兑换
-0 0,8,12,16 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
+0 0,8,12,16 * * * node /scripts/zx_joy_reward_20.js >> /scripts/logs/zx_joy_reward_20.log 2>&1
+0 0,8,12,16 * * * node /scripts/zx_joy_reward_500.js >> /scripts/logs/zx_joy_reward_500.log 2>&1
 # 京东摇一摇
 0 1,17 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 # 保价
