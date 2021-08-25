@@ -97,6 +97,10 @@ let randomCount = $.isNode() ? 20 : 5;
 async function commitSharecodes() {
     try {
         await plantBeanIndex();
+        if ($.plantBeanIndexResult.errorCode === 'PB101') {
+            console.log(`\n活动太火爆了，还是去买买买吧！\n`)
+            return
+          }
         if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
             const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
             $.myPlantUuid = getParam(shareUrl, 'plantUuid')
@@ -205,7 +209,7 @@ async function jdPlantBean() {
             await receiveNutrients(); //定时领取营养液
             await doHelp(); //助力
             await doTask(); //做日常任务
-            await doEgg();
+            //await doEgg();
             await stealFriendWater();
             await doCultureBean();
             await doGetReward();
