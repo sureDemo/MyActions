@@ -178,6 +178,8 @@
 15 0 * * * node /scripts/zx_jddj_plantBeans.js >> /scripts/logs/zx_jddj_plantBeans.log 2>&1
 #领券中心签到
 15 0 * * * node /scripts/jd_ccSign.js >> /scripts/logs/jd_ccSign.log 2>&1
+#cookie检查
+10 23 * * * node /scripts/jd_cookieCheck.js >> /scripts/logs/jd_cookieCheck.log 2>&1
 
 ##############默认注释活动##############
 # 京东试用（默认注释，请配合取关脚本使用）
