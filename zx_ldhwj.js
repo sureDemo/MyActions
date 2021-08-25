@@ -182,7 +182,7 @@ async function getLottery(){
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        if(result.data.bizCode == 0 && result.data.result.userAwardsCacheDto.jBeanAwardVo.prizeName){
+        if(result.data.bizCode == 0 && result.data.result.lotteryReturnCode == 0){
            console.log("\n获得"+result.data.result.userAwardsCacheDto.jBeanAwardVo.prizeName+"\n")
    await $.wait(4000)
         }else{
@@ -268,11 +268,11 @@ list2tokenArr.push(list1.simpleRecordInfoVo.taskToken)
 list2tokenArr.push(list2.shoppingActivityVos[i].taskToken)
        }
        
-       let list3 = result.data.result.taskVos.find(item => item.taskId == 3)
-       for(let i = 0; i < list3.shoppingActivityVos.length; i ++){
-       listtokenArr.push(3+list3.shoppingActivityVos[i].taskToken)
-list2tokenArr.push(list3.shoppingActivityVos[i].taskToken)
-       }
+//        let list3 = result.data.result.taskVos.find(item => item.taskId == 3)
+//        for(let i = 0; i < list3.shoppingActivityVos.length; i ++){
+//        listtokenArr.push(3+list3.shoppingActivityVos[i].taskToken)
+// list2tokenArr.push(list3.shoppingActivityVos[i].taskToken)
+//        }
        
        let list4 = result.data.result.taskVos.find(item => item.taskId == 4)
        for(let i = 0; i < list4.shoppingActivityVos.length; i ++){
@@ -284,6 +284,11 @@ list2tokenArr.push(list4.shoppingActivityVos[i].taskToken)
        for(let i = 0; i < list5.shoppingActivityVos.length; i ++){listtokenArr.push(5+list5.shoppingActivityVos[i].taskToken)
 list2tokenArr.push(list5.shoppingActivityVos[i].taskToken)
 //$.log(list5.shoppingActivityVos[i].taskToken)
+       }
+       let list6 = result.data.result.taskVos.find(item => item.taskId == 6)
+       for(let i = 0; i < list6.shoppingActivityVos.length; i ++){
+       listtokenArr.push(6+list6.shoppingActivityVos[i].taskToken)
+list2tokenArr.push(list6.shoppingActivityVos[i].taskToken)
        }
       // $.log(JSON.stringify(listtokenArr))
       
