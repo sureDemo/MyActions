@@ -176,6 +176,8 @@
 */5 * * * * node /scripts/zx_jddj_getPoints.js >> /scripts/logs/zx_jddj_getPoints.log 2>&1
 #京东到家庄园浇水
 15 0 * * * node /scripts/zx_jddj_plantBeans.js >> /scripts/logs/zx_jddj_plantBeans.log 2>&1
+#领券中心签到
+15 0 * * * node /scripts/jd_ccSign.js >> /scripts/logs/jd_ccSign.log 2>&1
 
 ##############默认注释活动##############
 # 京东试用（默认注释，请配合取关脚本使用）
