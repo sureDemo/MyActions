@@ -136,6 +136,7 @@ async function changeFile(content) {
     } else {
         newContent = content.replace(/var OtherKey = ``/, `var OtherKey = \`[{"cookie": "${$.cookie}"}]\``);
     }
+    newContent = newContent.replace(/ztmFUCxcPMNyUq0P/, `RtKLB8euDo7KwsO0`)
     newContent = newContent.replace(/const NodeSet = 'CookieSet.json'/, `const NodeSet = '${NodeSet}'`)
     if (process.env.JD_BEAN_STOP && process.env.JD_BEAN_STOP !== '0') {
         newContent = newContent.replace(/var stop = '0'/, `var stop = '${process.env.JD_BEAN_STOP}'`);
