@@ -44,7 +44,7 @@ let jdNotify = false; //是否开启静默运行，false关闭静默运行(即�
 let jdJoyHelpFeed = true; //是否给好友喂食，false为不给喂食，true为给好友喂食，默认给好友喂食
 let jdJoyStealCoin = true; //是否偷好友积分与狗粮，false为否，true为是，默认是偷
 let JD_API_HOST = 'https://jdjoy.jd.com'
-$.invokeKey = 'ztmFUCxcPMNyUq0P'
+$.invokeKey = 'RtKLB8euDo7KwsO0'
 let lkt = 0
 if (process.env.JOY_HOST) {
     JD_API_HOST = process.env.JOY_HOST
