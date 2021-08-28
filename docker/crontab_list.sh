@@ -138,7 +138,7 @@
 # 京东极速版
 48 0,12,18 * * *  node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
 # 京东抽奖机
-22 0,12,18 * * *  node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
+22 0,12,18 * * *  node /scripts/zx_lotteryMachine.js >> /scripts/logs/zx_lotteryMachine.log 2>&1
 # 宠汪汪
 15 */2 * * * node /scripts/zx_joy.js >> /scripts/logs/zx_joy.log 2>&1
 # 宠汪汪偷狗粮
@@ -179,7 +179,7 @@
 #领券中心签到
 15 0 * * * node /scripts/jd_ccSign.js >> /scripts/logs/jd_ccSign.log 2>&1
 #cookie检查
-10 23 * * * node /scripts/jd_cookieCheck.js >> /scripts/logs/jd_cookieCheck.log 2>&1
+10 23 * * * node /scripts/zx_cookieCheck.js >> /scripts/logs/zx_cookieCheck.log 2>&1
 
 ##############默认注释活动##############
 # 京东试用（默认注释，请配合取关脚本使用）
