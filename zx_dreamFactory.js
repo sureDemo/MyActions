@@ -1307,7 +1307,7 @@ async function showMsg() {
         }
         if (new Date().getHours() > 18) {
             $.msg($.name, '', `${$.message}`)
-            await $.notify.sendNotify($.name, '', `${$.message}`)
+            $.allMessage += $.message + "\n";
             $.log(`\n${$.message}`);
         } else {
             $.log(`\n${$.message}`);
