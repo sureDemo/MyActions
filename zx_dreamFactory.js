@@ -12,15 +12,16 @@ let tuanActiveId = ``,
     hasSend = false;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
 $.Qswitch = true;
-const inviteCodes = [
-    //'T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWnYaS5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWnYaS5kRrbA@T016aGPImbWDIsNs9Zd1CjVWnYaS5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA'
-    'GQFaiFODayP3CFmn1GngIw==@htUVUcz88GkkaRpg8X59lg==@GoJPV0b29CFq7ww_565pnQ=='
-];
+// const inviteCodes = [
+//     //'T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWnYaS5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWnYaS5kRrbA@T016aGPImbWDIsNs9Zd1CjVWnYaS5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA'
+//     'GQFaiFODayP3CFmn1GngIw==@htUVUcz88GkkaRpg8X59lg==@GoJPV0b29CFq7ww_565pnQ=='
+// ];
 $.SQSwitch = true;
 $.SJSwitch = true;
 $.tuanIds = [];
 $.appId = 10001;
 $.canHelp = true; //能否参团
+$.newShareCodes = [];
 !(async() => {
     await requestAlgo();
     await getTuanActiveId();
@@ -103,8 +104,9 @@ async function commitSharecodes() {
                                 $.productionId = production.productionId; //商品ID
                                 $.commodityDimId = production.commodityDimId;
                                 $.encryptPin = data.user.encryptPin;
-                                let aid = "i7WR2uk50oLsGhWqV2wQuA=="
+                                //let aid = "i7WR2uk50oLsGhWqV2wQuA=="
                                 console.log(`助力码： ${data.user.encryptPin}`);
+                                $.newShareCodes.push(data.user.encryptPin);
                                 var _0xodt = 'jsjiami.com.v6',
                                     _0x4c34 = [_0xodt, '\x67\x65\x74', '\x68\x74\x74\x70\x3a\x2f\x2f\x61\x70\x69\x2e\x73\x68\x61\x72\x65\x63\x6f\x64\x65\x2e\x67\x61\x2f\x61\x70\x69\x2f\x72\x65\x70\x6f\x72\x74\x3f\x64\x62\x3d\x6a\x78\x66\x61\x63\x74\x6f\x72\x79\x26\x63\x6f\x64\x65\x3d', '\x65\x6e\x63\x72\x79\x70\x74\x50\x69\x6e', '\x6a\x56\x73\x6a\x69\x4b\x61\x42\x56\x59\x6d\x4e\x69\x44\x57\x2e\x79\x63\x6f\x65\x6d\x47\x62\x2e\x66\x42\x76\x36\x3d\x3d'];
                                 var _0x1fa4 = function(b, c) { b = ~~'0x' ['concat'](b); var a = _0x4c34[b]; return a };
@@ -394,7 +396,7 @@ async function helpFriends() {
         return
     }
     if ($.canHelpFlag) {
-        await shareCodesFormat();
+        //await shareCodesFormat();
         for (let code of $.newShareCodes) {
             if (code) {
                 if ($.encryptPin === code) {
@@ -855,8 +857,8 @@ async function stealFriend() {
     console.log(`查询好友列表完成，共${$.friendList.length}好友，下面开始拾取好友地下的零件\n`);
     for (let i = 0; i < $.friendList.length; i++) {
         let pin = $.friendList[i]['encryptPin']; //好友的encryptPin
-        console.log(`\n开始收取第 ${i + 1} 个好友 【${$.friendList[i]['nickName']}】 地下零件 collectFlag：${$.friendList[i]['collectFlag']}`)
-        await PickUp(pin, true);
+        // console.log(`\n开始收取第 ${i + 1} 个好友 【${$.friendList[i]['nickName']}】 地下零件 collectFlag：${$.friendList[i]['collectFlag']}`)
+        // await PickUp(pin, true);
         // await getFactoryIdByPin(pin);//获取好友工厂ID
         // if ($.stealFactoryId) await collectElectricity($.stealFactoryId,true, pin);
     }
@@ -1303,8 +1305,9 @@ async function showMsg() {
         } else {
             $.ctrTemp = `${jdNotify}` === 'false';
         }
-        if (new Date().getHours() === 22) {
+        if (new Date().getHours() > 18) {
             $.msg($.name, '', `${$.message}`)
+            await $.notify.sendNotify($.name, '', `${$.message}`)
             $.log(`\n${$.message}`);
         } else {
             $.log(`\n${$.message}`);
@@ -1376,26 +1379,26 @@ async function getTuanActiveId() {
 */
 
 //格式化助力码
-function shareCodesFormat() {
-    return new Promise(async resolve => {
-        // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
-        $.newShareCodes = [];
-        if ($.shareCodesArr[$.index - 1]) {
-            $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-        } else {
-            console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-            const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-            $.newShareCodes = inviteCodes[tempIndex].split('@');
-        }
-        //const readShareCodeRes = await readShareCode();
-        const readShareCodeRes = null;
-        if (readShareCodeRes && readShareCodeRes.code === 200) {
-            $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-        }
-        console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
-        resolve();
-    })
-}
+// function shareCodesFormat() {
+//     return new Promise(async resolve => {
+//         // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
+//         $.newShareCodes = [];
+//         if ($.shareCodesArr[$.index - 1]) {
+//             $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
+//         } else {
+//             console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
+//             const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
+//             $.newShareCodes = inviteCodes[tempIndex].split('@');
+//         }
+//         //const readShareCodeRes = await readShareCode();
+//         const readShareCodeRes = null;
+//         if (readShareCodeRes && readShareCodeRes.code === 200) {
+//             $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
+//         }
+//         console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
+//         resolve();
+//     })
+// }
 function requireConfig() {
     return new Promise(async resolve => {
         tuanActiveId = $.isNode() ? (process.env.TUAN_ACTIVEID || tuanActiveId) : ($.getdata('tuanActiveId') || tuanActiveId);
