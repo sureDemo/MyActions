@@ -132,6 +132,7 @@ async function commitSharecodes() {
 
 async function jdDreamFactory() {
     try {
+        $.message = ""
         await userInfo();
         await QueryFriendList(); //查询今日招工情况以及剩余助力次数
         // await joinLeaderTuan();//参团
@@ -1307,7 +1308,7 @@ async function showMsg() {
         }
         if (new Date().getHours() > 18) {
             $.msg($.name, '', `${$.message}`)
-            $.allMessage = $.message + "\n";
+            $.allMessage += $.message + "\n";
             $.log(`\n${$.message}`);
         } else {
             $.log(`\n${$.message}`);
