@@ -76,11 +76,18 @@ if ($.isNode()) {
             await getDdFactoryInfo(); // 京东工厂
             await showMsg();
         }
+        //分开发送
+        if (i > 0 && i % 5 == 0) {
+            if ($.isNode() && allMessage) {
+                await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+            }
+            allMessage = "";
+        }
     }
-
     if ($.isNode() && allMessage) {
         await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
     }
+
 })()
 .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
