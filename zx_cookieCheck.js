@@ -5,9 +5,9 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
-const zxCommon = require('./zx_common.js');
-let zxObject = new zxCommon.ZxObject('CK检测');
-const $ = zxObject.$;
+// const zxCommon = require('./zx_common.js');
+// let zxObject = new zxCommon.ZxObject('CK检测');
+// const $ = zxObject.$;
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
@@ -98,6 +98,10 @@ async function GetJDUserInfoUnion() {
                             $.log(txt);
                             allMessage += txt
                             $.isLogin = true
+                        } else {
+                            let txt = data.msg;
+                            allMessage += txt
+                            $.isLogin = false
                         }
                     } else {
                         console.log(`京东服务器返回空数据`)
