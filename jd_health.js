@@ -63,7 +63,7 @@ const JD_API_HOST = "https://api.m.jd.com/";
 function runTimes() {
     return new Promise((resolve, reject) => {
         $.get({
-            url: `https://api.jdsharecode.xyz/api/runTimes?activityId=health&sharecode=${$.farmInfo.farmUserPro.shareCode}`
+            url: `https://api.jdsharecode.xyz/api/runTimes?activityId=health&sharecode=${$.code}`
         }, (err, resp, data) => {
             if (err) {
                 console.log('上报失败', err)
@@ -90,6 +90,7 @@ async function commitSharecodes() {
                         data = $.toObj(data)
                         if (data.data.result.taskVos) {
                             $.shareCodesArr.push(data.data.result.taskVos[0].assistTaskDetailVo.taskToken)
+	            $.code=data.data.result.taskVos[0].assistTaskDetailVo.taskToken;
                             console.log("助力码：" + data.data.result.taskVos[0].assistTaskDetailVo.taskToken)
                             for (let k = 0; k < 5; k++) {
                                 try {
