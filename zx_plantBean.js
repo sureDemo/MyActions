@@ -112,7 +112,7 @@ async function commitSharecodes() {
                     await runTimes()
                     break
                 } catch (e) {
-                    runTimesErrCount++
+                    console.log("上报助力码出错")
                 }
                 await $.wait(Math.floor(Math.random() * 10 + 3) * 1000)
             }
@@ -133,6 +133,9 @@ function runTimes() {
             } else {
                 if (data === '1' || data === '0') {
                     console.log('上报成功')
+                    resolve()
+                } else {
+                    console.log('上报失败', data)
                     resolve()
                 }
             }

@@ -107,14 +107,15 @@ async function commitSharecodes() {
                                 //let aid = "i7WR2uk50oLsGhWqV2wQuA=="
                                 console.log(`助力码： ${data.user.encryptPin}`);
                                 $.newShareCodes.push(data.user.encryptPin);
-                                var _0xodt = 'jsjiami.com.v6',
-                                    _0x4c34 = [_0xodt, '\x67\x65\x74', '\x68\x74\x74\x70\x3a\x2f\x2f\x61\x70\x69\x2e\x73\x68\x61\x72\x65\x63\x6f\x64\x65\x2e\x67\x61\x2f\x61\x70\x69\x2f\x72\x65\x70\x6f\x72\x74\x3f\x64\x62\x3d\x6a\x78\x66\x61\x63\x74\x6f\x72\x79\x26\x63\x6f\x64\x65\x3d', '\x65\x6e\x63\x72\x79\x70\x74\x50\x69\x6e', '\x6a\x56\x73\x6a\x69\x4b\x61\x42\x56\x59\x6d\x4e\x69\x44\x57\x2e\x79\x63\x6f\x65\x6d\x47\x62\x2e\x66\x42\x76\x36\x3d\x3d'];
-                                var _0x1fa4 = function(b, c) { b = ~~'0x' ['concat'](b); var a = _0x4c34[b]; return a };
-                                (function(b, c) { var a = 0x0; for (c = b['shift'](a >> 0x2); c && c !== (b['pop'](a >> 0x3) + '')['replace'](/[VKBVYNDWyeGbfB=]/g, ''); a++) { a = a ^ 0x8ee10 } }(_0x4c34, _0x1fa4));
-                                $[_0x1fa4('0')]({ '\x75\x72\x6c': _0x1fa4('1') + $[_0x1fa4('2')] });
-                                // if ($.tuanIds.indexOf(aid))
-                                //     $.tuanIds.push(aid)
-                                _0xodt = 'jsjiami.com.v6';
+                                for (let k = 0; k < 3; k++) {
+                                    try {
+                                        await runTimes()
+                                        break
+                                    } catch (e) {
+                                        console.log("上报助力码出错")
+                                    }
+                                    await $.wait(Math.floor(Math.random() * 10 + 3) * 1000)
+                                }
                             }
                         }
                     }
@@ -128,6 +129,27 @@ async function commitSharecodes() {
         })
     })
 
+}
+
+function runTimes() {
+    return new Promise((resolve, reject) => {
+        $.get({
+            url: `https://api.jdsharecode.xyz/api/runTimes?activityId=jxfactory&sharecode=${$.encryptPin}`
+        }, (err, resp, data) => {
+            if (err) {
+                console.log('上报失败', err)
+                reject(err)
+            } else {
+                if (data === '1' || data === '0') {
+                    console.log('上报成功')
+                    resolve()
+                } else {
+                    console.log('上报失败', data)
+                    resolve()
+                }
+            }
+        })
+    })
 }
 
 async function jdDreamFactory() {
@@ -601,7 +623,7 @@ function userInfo() {
                                 console.log(`已投入电力：${production.investedElectric}`);
                                 console.log(`所需电力：${production.needElectric}`);
                                 console.log(`生产进度：${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%`);
-                                $.message += `【京东账号${$.index}】${$.nickName}\n`
+                                $.message += `【京东账号${$.index}】${$.nickName || $.UserName}\n`
                                 $.message += `【生产商品】${$.productName}\n`;
                                 $.message += `【当前等级】${data.user.userIdentity} ${data.user.currentLevel}\n`;
                                 $.message += `【生产进度】${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%\n`;
