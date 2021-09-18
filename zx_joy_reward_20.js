@@ -227,7 +227,7 @@ async function joyReward() {
 
 function getExchangeRewards() {
     let opt = {
-        url: "//jdjoy.jd.com/common/gift/getBeanConfigs?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0",
+        url: "//jdjoy.jd.com/common/gift/getBeanConfigs?reqSource=h5&invokeKey=JL1VTNRadM68cIMQ",
         method: "GET",
         data: {},
         credentials: "include",
@@ -276,7 +276,7 @@ function getExchangeRewards() {
 function exchange(saleInfoId, orderSource) {
     let body = { "buyParam": { "orderSource": orderSource, "saleInfoId": saleInfoId }, "deviceInfo": {} }
     let opt = {
-        "url": "//jdjoy.jd.com/common/gift/new/exchange?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0",
+        "url": "//jdjoy.jd.com/common/gift/new/exchange?reqSource=h5&invokeKey=JL1VTNRadM68cIMQ",
         "data": body,
         "credentials": "include",
         "method": "POST",
