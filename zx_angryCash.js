@@ -8,7 +8,7 @@ const $ = new Env("愤怒的现金")
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 let cookiesArr = []
-var pins = process.env.cashHelpPins ? ? ""
+var pins = ""
 var helps = [];
 var tools = [];
 !(async() => {
@@ -22,9 +22,9 @@ var tools = [];
         pin = cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]
         if ((!pins && i < 9) || (pins && pins.indexOf(pin) != -1)) {
             data = await requestApi("cash_mob_home", cookie)
-            inviteCode = data ? .data ? .result ? .inviteCode
+            inviteCode = data?.data?.result?.inviteCode
             if (inviteCode) {
-                shareDate = data ? .data ? .result ? .shareDate
+                shareDate = data?.data?.result?.shareDate
                 helps.push({ inviteCode: inviteCode, key: i })
                 tools.push({ success: 0, shareDate: "", cookie: cookie, key: i, shareDate: shareDate })
             }
@@ -42,7 +42,7 @@ var tools = [];
                     tools.unshift(tool)
                     return
                 }
-                shareDate = data ? .data ? .result ? .shareDate
+                shareDate = data?.data?.result?.shareDate
                 if (!shareDate) {
                     return
                 }
@@ -71,8 +71,8 @@ function help(tool) {
         inviteCode: inviteCode,
         shareDate: tool.shareDate
     }).then(function(data) {
-        console.log(`${tool.key+1}->${key+1}`, data ? .data ? .bizMsg)
-        switch (data ? .data ? .bizCode) {
+        console.log(`${tool.key+1}->${key+1}`, data?.data?.bizMsg)
+        switch (data?.data?.bizCode) {
             case 0: //助力成功
                 tool.success++
                     break;
@@ -91,7 +91,7 @@ function help(tool) {
                 tool.success = 3
                 break
             case 208: //您来晚啦，您的好友已经领到全部奖励了
-                if (helps[0] ? .inviteCode == inviteCode) helps.shift()
+                if (helps[0]?.inviteCode == inviteCode) helps.shift()
                 break;
             case 106: //你点击的太快啦\n请稍后尝试~
                 break;
