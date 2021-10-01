@@ -79,17 +79,17 @@ if ($.isNode()) {
 	  await getJxFactory();   //京喜工厂
 	  await showMsg();
     }
-        if ($.isNode() && notifyTip && allMessage) {
-            console.log("单账号通知")
+        if ($.isNode() && allMessage && i > 0 && i % 5 == 0) {
+            console.log("分开通知")
             await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
             allMessage=""
         }
   }
 
-    if ($.isNode() && !notifyTip && allMessage) {
-        console.log("多账号合并通知")
-    await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
-  }
+    //if ($.isNode() && !notifyTip && allMessage) {
+    //    console.log("多账号合并通知")
+    //await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+  //}
 })()
     .catch((e) => {
       $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
