@@ -157,7 +157,7 @@ if (process.env.PUSH_PLUS_USER) {
  * @param author 作者仓库等信息
  * @returns {Promise<unknown>}
  */
-async function sendNotify(text, desp, userpin,params = {}, author = 'by:4150123') {
+async function sendNotify(text, desp, userpin, params = {}, author = 'by:4150123') {
   //提供6种通知
   desp += author;//增加作者信息，防止被贩卖等
   await Promise.all([
@@ -172,7 +172,7 @@ async function sendNotify(text, desp, userpin,params = {}, author = 'by:4150123'
     tgBotNotify(text, desp),//telegram 机器人
     ddBotNotify(text, desp),//钉钉机器人
     qywxBotNotify(text, desp), //企业微信机器人
-    qywxamNotify(text, desp,userpin), //企业微信应用消息推送
+    qywxamNotify(text, desp, userpin), //企业微信应用消息推送
     iGotNotify(text, desp, params),//iGot
     //CoolPush(text, desp)//QQ酷推
   ])
@@ -534,8 +534,9 @@ function qywxBotNotify(text, desp) {
 function ChangeUserId(userpin) {
   const QYWX_AM_AY = QYWX_AM.split(',');
   if (QYWX_AM_AY[2]) {
+    let userId = '';
     const userIdTmp = QYWX_AM_AY[2].split("|");
-    let userId = userIdTmp.length > 0 ? userIdTmp[0] : QYWX_AM_AY[2];
+    let defalutuser = userIdTmp.length > 0 ? userIdTmp[0] : QYWX_AM_AY[2];
     for (let i = 0; i < userIdTmp.length; i++) {
       // const count = "账号" + (i + 1);
       // const count2 = "签到号 " + (i + 1);
@@ -545,18 +546,18 @@ function ChangeUserId(userpin) {
         break;
       }
     }
-    // if (!userId) userId = QYWX_AM_AY[2];
-    return userId;
+    if (!userId) userId = defalutuser;
+    return userId == defalutuser ? userId : defalutuser + '|' + userId;
   } else {
     return "@all";
   }
 }
 
-function qywxamNotify(text, desp,userpin) {
+function qywxamNotify(text, desp, userpin) {
   return new Promise(resolve => {
     if (QYWX_AM) {
       const QYWX_AM_AY = QYWX_AM.split(',');
-      const touser=ChangeUserId(userpin);
+      const touser = ChangeUserId(userpin);
       const options_accesstoken = {
         url: `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
         json: {
