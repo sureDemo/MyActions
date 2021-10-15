@@ -180,6 +180,12 @@
 15 0 * * * node /scripts/jd_ccSign.js >> /scripts/logs/jd_ccSign.log 2>&1
 #cookie检查
 10 23 * * * node /scripts/zx_cookieCheck.js >> /scripts/logs/zx_cookieCheck.log 2>&1
+#京东小魔方
+29 2,8 * * * node /scripts/jd_mofang.js >> /scripts/logs/jd_mofang.log 2>&1
+#芥么小程序
+6 0,9 * * * node /scripts/jd_jieMo.js >> /scripts/logs/jd_jieMo.log 2>&1
+#宠汪汪兑换
+59 23 * * * node /scripts/zx_blueCoin_exchange.js >> /scripts/logs/zx_blueCoin_exchange.log 2>&1
 
 ##############默认注释活动##############
 # 京东试用（默认注释，请配合取关脚本使用）
