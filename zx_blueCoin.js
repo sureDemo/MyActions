@@ -24,8 +24,8 @@ const $ = zxObject.$;
 
 let coinToBeans = $.getdata('coinToBeans') || 0; //兑换多少数量的京豆（20或者1000），0表示不兑换，默认不兑换京豆，如需兑换把0改成20或者1000，或者'商品名称'(商品名称放到单引号内)即可
 coinToBeans = 20;
-let jdNotify = false; //是否开启静默运行，默认false关闭(即:奖品兑换成功后会发出通知提示)
-
+let jdNotify = true; //是否开启静默运行，默认false关闭(即:奖品兑换成功后会发出通知提示)
+let allMessage ="";
 
 
 const JD_API_HOST = `https://api.m.jd.com/api?appid=jdsupermarket`;

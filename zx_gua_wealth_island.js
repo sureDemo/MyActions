@@ -879,10 +879,10 @@ function getGetRequest(type, stk = '', additional = '') {
         if (type == 'GetUserTaskStatusList' || type == 'Award' || type == 'Award1' || type == 'DoTask' || type == 'DoTask1') {
             let bizCode = 'jxbfd'
             if (type == 'Award1') {
-                bizCode = 'jxbfddch'
+                bizCode = 'jxbfd'
                 type = 'Award'
             } else if (type == 'DoTask1') {
-                bizCode = 'jxbfddch'
+                bizCode = 'jxbfd'
                 type = 'DoTask'
             }
             url = `https://m.jingxi.com/newtasksys/newtasksys_front/${type}?strZone=jxbfd&bizCode=${bizCode}&source=jxbfd&dwEnv=${dwEnv}&_cfd_t=${Date.now()}${additional}${stks}&_ste=1&_=${Date.now()}&sceneval=2&g_login_type=1`
