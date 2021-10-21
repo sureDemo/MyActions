@@ -151,11 +151,20 @@ async function makeShareCodes(code) {
     let pin = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1]);
     pin = md5(pin)
     try {
-        let data = await $.get(`https://api.jdsharecode.xyz/api/autoInsert/hb88?sharecode=${code}&bean=${bean}&farm=${farm}&pin=${pin}`, { timeout: 10000 })
-        if (data.code === 200)
-            console.log('自动提交助力码成功')
-        else
-            console.log('自动提交助力码失败！已提交farm的cookie才可提交88hb')
+        let url = `https://api.jdsharecode.xyz/api/autoInsert/hb88?sharecode=${code}&bean=${bean}&farm=${farm}&pin=${pin}`;
+        await $.get({ url: url },
+            (err, resp, data) => {
+                if (err) {
+                    console.log(`HW  自动提交失败`, err)
+                } else {
+                    data = JSON.parse(data);
+                    if (data.code === 200) {
+                        console.log(`HW  自动提交成功`)
+                    } else {
+                        console.log('提交失败！已提交farm的cookie才可提交cfd')
+                    }
+                }
+            })
     } catch (e) {
         console.log('自动提交助力码出错')
     }
